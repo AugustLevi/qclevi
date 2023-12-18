@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  {%load static%}
+  
+      
+      <section class="home" id="home">
+        <div class="content">
+            <h3>Welcome to LeviQuiz.</h3>
+            <p>
+            This is one of the projects that I have to present to our course.
+            Please take a look and have fun. You can leave reviews as well.
+            </p>
+            <a href="/category/" class="btnn">
+                Take quiz now!
+            </a>
+        </div>
+        <div class="image">
+            <img src="{%static 'imgs/qz.png'%}">
+        </div>
+
+    </section>
+    
+      
+      
+</body>
+</html>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Acme&family=Lobster+Two:wght@700&family=Orbitron:wght@800&family=Roboto:wght@500&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Kanit:wght@600&family=Lobster+Two:wght@700&family=Orbitron:wght@800&family=Roboto:wght@500&family=Russo+One&display=swap');
+*{
+  font-family: 'Acme', sans-serif;
+font-family: 'Kanit', sans-serif;
+font-family: 'Lobster Two', sans-serif;
+font-family: 'Orbitron', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Russo One', sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  border:none;
+  outline:none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all .2s linear;
+}
+::selection{
+  background:var(--red);
+  color:#fff;
+}
+body{
+    background-image: url('{%static "imgs/vo.jpg" %}');
+}
+.home{
+    display: flex;
+    flex-wrap:wrap;
+    gap: 1.5em;
+    min-height: 100vh;
+    align-items: center;
+    /* background: url(/images/desktop-wallpaper-neon-city-music-indieartist-chicago-city-city-neon-urban.jpg) no-repeat; */
+    background-size:cover;
+}
+.home .content{
+    flex: 10 10 400px;
+    padding-top:6.5rem;
+    padding-left: 23px;
+}
+.home .image{
+    flex: 10 10 150px;
+}
+.home .image img{
+    width:100%;
+    padding:10px;
+    animation: float 3s linear infinite;
+}
+@keyframes float {
+
+    0% , 100%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(30px);
+    }
+    
+}
+.home .content h3{
+    color:#f9f4f4;
+    font-size: 60px;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgb(60, 6, 238);
+    font-family:'Orbitron',sans-serif;
+}
+.home .content p{
+    font-size: 18px;
+    color:white;
+    font-family: 'Kanit', sans-serif;
+    font-size: 22px;
+    text-shadow: 0 0 10px gold;
+    padding: 10px 0;
+}
+.btnn{
+    display: inline-block;
+    padding: 15px 30px;
+    border: 2px solid blue;
+    color:#fff;
+    text-shadow: 0 0 10px black;
+    cursor: pointer;
+    font-size:18px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    margin-top: 10px;
+    background-color: blue;
+    text-decoration: none;
+}
+.btnn::before{
+    content: '';
+    position: absolute;
+    top:0; right:0;
+    width:0%;
+    height: 100%;
+    background-color: white;
+    transition:.3s linear;
+    z-index: -1;
+}
+.btnn:hover::before{
+    width:100%;
+    left:0;
+}
+.btnn:hover{
+    background-color: blue;
+    color:black;
+}
+@media(max-width:991px){
+    html{
+        font-size: 55%;
+    }
+    header{
+        padding:2rem;
+    }
+    section{
+        padding: 20px;
+    }
+}
+@media(max-width: 768px) {
+    
+    #menu-bar{
+        display: initial;
+    }
+
+    .header .navbar{
+        position: absolute;
+        top:100%; left:0; right:0;
+        background:#f7f7f7;
+        border-top: 1px solid gray;
+        clip-path: polygon(0 0,100% 0,0 0);
+    }
+    .header .navbar.active{
+        clip-path: polygon(0 0,100% 0,100% 100%,0% 100%);
+    }
+    .header .navbar a{
+        margin: 1.5rem;
+        padding: 1.5rem;
+        display: block;
+        border:  10px solid aqua;
+        background:#fff;
+    }
+
+}
+@media(max-width:400px){
+    html{
+        font-size: 50%;
+    }
+    
+}
+</style>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  {%load static%}
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="#"><img src="{%static 'imgs/levi.png' %}" width="80px" height="70px">LeviQuiz</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <a class="dropdown-item" href="#">{{user.username}}</a>
+          <a class="dropdown-item" href="#">{{user.email}}</a>
+          
+<div>
+
+</div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signout/">Logout</a>
+            </li>
+
+
+          <form class="d-flex mt-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+              <div class="box-container" id="score">
+                <a href="/category/" style="margin-right: 350px;"><i class="fa-solid fa-backward">Exit</i></a>
+                {%for q in questions%}
+                <form method="post" action="{%url 'score' %}" id="myForm" >
+                  {% csrf_token %}
+                  <h3 style="margin-top:30px;">{{q.content}}</h3>
+                  <div class="container">
+                        <div class="box">
+                          <input 
+                          type="radio" name="{{q.content}}"
+                          id="{{q.option1}}" class="input-hidden" value="{{q.option1}}"/>
+                        <label for="{{q.option1}}">
+                          <img 
+                            src="{{q.image1.url}}" 
+                            /><span style="color:gold;">
+                              A
+                            </span>{{q.option1}}
+                        </label>
+                        </div>
+                        <div class="box">
+                          <input 
+                          type="radio" name="{{q.content}}"
+                          id="{{q.option2}}" class="input-hidden" value="{{q.option2}}"/>
+                        <label for="{{q.option2}}">
+                          <img 
+                            src="{{q.image2.url}}" 
+                             /><span style="color:gold;">
+                              B
+                            </span>{{q.option2}}
+                        </label>
+                        </div>
+                        <div class="box">
+                          <input 
+                          type="radio" name="{{q.content}}"
+                          id="{{q.option3}}" class="input-hidden" value="{{q.option3}}"/>
+                        <label for="{{q.option3}}">
+                          <img 
+                            src="{{q.image3.url}}" 
+                             /><span style="color:gold;">
+                              C
+                            </span>{{q.option3}}
+                        </label>
+                        </div>
+                        <div class="box">
+                          <input 
+                          type="radio" name="{{q.content}}"
+                          id="{{q.option4}}" class="input-hidden" value="{{q.option4}}"/>
+                        <label for="{{q.option4}}">
+                          <img 
+                            src="{{q.image4.url}}" 
+                             /><span style="color:gold;">
+                              D
+                            </span>{{q.option4}}
+                        </label>
+                        </div>
+                        
+                      </div>
+                      {%endfor%}
+                      <Center><button type="submit" class="button">Confirm</button></Center>
+                      </form>
+                      
+                    </div>
+              </div>
+              <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: transparent;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:black;">Thank you for taking these quizzes.</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="color:black;">
+        Your score:{{score}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Try again!</button>
+      </div>
+    </div>
+  </div>
+</div>
+      
+</body>
+</html>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Acme&family=Lobster+Two:wght@700&family=Orbitron:wght@800&family=Roboto:wght@500&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Kanit:wght@600&family=Lobster+Two:wght@700&family=Orbitron:wght@800&family=Roboto:wght@500&family=Russo+One&display=swap');
+*{
+  font-family: 'Acme', sans-serif;
+font-family: 'Kanit', sans-serif;
+font-family: 'Lobster Two', sans-serif;
+font-family: 'Orbitron', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Russo One', sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  border:none;
+  outline:none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all .2s linear;
+  color:white;
+}
+html{
+  scroll-behavior: smooth;
+}
+::selection{
+  background:var(--red);
+  color:#fff;
+}
+body{
+  background: rgb(113,14,44);
+background: linear-gradient(90deg, rgba(113,14,44,1) 0%, rgba(26,77,156,1) 34%, rgba(156,26,61,1) 74%);
+}
+.section{
+width:100%;
+margin-top:100px;
+background: rgb(15,15,15);
+background: linear-gradient(90deg, rgba(15,15,15,1) 0%, rgba(20,70,86,1) 0%, rgba(34,67,84,1) 4%, rgba(37,66,84,1) 25%, rgba(104,106,183,1) 52%, rgba(110,58,205,1) 59%, rgba(112,39,214,1) 61%, rgba(111,110,193,0.9893207282913166) 84%, rgba(1,161,203,1) 100%, rgba(0,212,255,1) 100%);
+}
+.container .row .col img{
+cursor: pointer;
+width:300px;
+height:250px;
+text-align: center;
+margin: 0 auto;
+display: block;
+}
+.box-container{
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  margin-top:100px;
+  
+}
+.box-container form h1{
+  font-size: 19px;
+}
+.box-container form img{
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+  box-shadow: 0 3px 6px black;
+  cursor: pointer;
+}
+.box-container .container .box{
+  border-radius: 12px;
+  text-align: center;
+  width:200px;
+  height:200px;
+  margin:7px 20px  20px;
+}
+.box-container .container img:hover{
+  box-shadow: 0px 3px 6px white;
+  box-shadow: 0px;
+
+}
+
+.box-container .container{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  align-items: center;
+  width:500px;
+  height: 500px;
+  box-shadow: 0 0 10px black;
+  background: rgb(2,0,36);
+  background: transparent;
+  border-radius: 12px;
+  backdrop-filter: blur(15px);
+  margin-top:10px;
+
+}
+.box-container form{
+  width: 100%;
+  height: 100%;
+}
+ form h3 {
+  text-align: center;
+  color:gold;
+  text-shadow: 0 0 10px purple;
+  font-size: 17px;
+}
+
+.input-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+input[type=radio]:checked + label>img {
+  border: 1px solid #fff;
+  box-shadow: 0 0 3px 3px #090;
+}
+
+/* Stuff after this is only to make things more pretty */
+input[type=radio] + label>img {
+  width: 200px;
+  height: 200px;
+}
+
+input[type=radio]:checked + label>img {
+  transform: 
+    rotateZ(-10deg) 
+    rotateX(10deg);
+}
+      .button{
+        width:300px;
+        height:60px;
+        color:white;
+        background-color: blue;
+        border-radius: 12px;
+        margin-top:10px;
+      }
+      .ok,.start-btn{
+        width:100px;
+        height:60px;
+        color:white;
+        background-color: blue;
+        border-radius: 12px;
+        margin-top:10px;
+      }
+      .button:hover,.start-btn:hover{
+      background-color: black;
+      }
+      .ok:hover{
+        background-color: #000000;
+      }
+      @media(max-width:991px){
+    html{
+        font-size: 100%;
+    }
+    header{
+        padding:2rem;
+    }
+    section{
+        padding: 20px;
+    }
+}
+@media(max-width: 768px) {
+    
+    #myForm{
+      width:425px;
+      height: 500px;
+      padding-left: 10px;
+      justify-content: center;
+      align-items: center;
+    }
+    .button{
+      width:200px;
+      height: 50px;
+      margin:30px;
+      margin-left: 90px;
+    }
+
+}
+@media(max-width:400px){
+    html{
+        font-size: 100%;
+    }
+    
+}
+</style>

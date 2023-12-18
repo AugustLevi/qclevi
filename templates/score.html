@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: transparent;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:black;">Thank you for taking these quizzes.</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            {%load static%}
+            <div class="modal-body" style="color:black;">
+                <img src="{%static 'imgs/levi.gif' %}" width="300px" height="200px"><br>
+              <h1>Your score:{{score}}
+              {{feedback}}</h1>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a href="/category/"><button type="button" class="btn btn-primary" data-bs-dismiss="modal">Take another quiz.</button> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="exampleModals" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="background-color: transparent;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:black;">Thank you for taking these quizzes.</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            {%load static%}
+            <div class="modal-body" style="color:black;">
+              <main>
+                <form method="post" class="login">
+                    {% csrf_token %}
+                
+                    <label for="comments">Comments:</label>
+                    <input name="comments" required></input><br>
+                
+                    <button type="submit" class="but">Submit</button>
+                </form>
+                </main>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a href="/review/"><button type="button" class="btn btn-primary" data-bs-dismiss="modal">See reviews</button> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <section class="home" id="home">
+        <div class="content">
+            <h3>Thank you for visiting LeviQuiz.</h3>
+            <p>
+            I'm gonna try more to develop this quiz web app. There are still many flaws spotted by myself.
+            So, much apologies in advance. Have fun and Dm me to leave review.
+            </p>
+            <button type="button" class="btnn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              View Your Score!
+            </button>
+            <button type="button" class="btnn" data-bs-toggle="modal" data-bs-target="#exampleModals">
+              Leave Review
+            </button>
+        </div>
+        <img src="{%static 'imgs/ch.gif'%}" width="500px" height="500px">
+
+    </section>
+
+      
+</body>
+</html>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Acme&family=Lobster+Two:wght@700&family=Orbitron:wght@800&family=Roboto:wght@500&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Kanit:wght@600&family=Lobster+Two:wght@700&family=Orbitron:wght@800&family=Roboto:wght@500&family=Russo+One&display=swap');
+*{
+  font-family: 'Acme', sans-serif;
+font-family: 'Kanit', sans-serif;
+font-family: 'Lobster Two', sans-serif;
+font-family: 'Orbitron', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Russo One', sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  border:none;
+  outline:none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all .2s linear;
+}
+.but{
+  width:100px; height: 100px; font-size: 15px; background-color: blue; border-radius: 12px; color: white;
+}
+.but:hover{
+  background-color: black;
+}
+::selection{
+  background:var(--red);
+  color:#fff;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+body{
+    background-image: url('{%static "imgs/quiz.jpg" %}');
+    background-size: cover;
+}
+.home{
+    display: flex;
+    flex-wrap:wrap;
+    gap: 10px;
+    min-height: 100vh;
+    align-items: center;
+    background-size:cover;
+}
+.home .content{
+    flex: 10 10 400px;
+    padding-top:6.5rem;
+    padding-left: 23px;
+
+}
+.home .image{
+    flex: 10 10 150px;
+}
+.home .image img{
+    width:100%;
+    padding:10px;
+}
+    
+.home .content h3{
+    color:#f9f4f4;
+    font-size: 60px;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgb(60, 6, 238);
+    font-family:'Orbitron',sans-serif;
+}
+.home .content p{
+    font-size: 18px;
+    color:white;
+    font-family: 'Kanit', sans-serif;
+    font-size: 22px;
+    text-shadow: 0 0 10px black;
+    padding: 10px 0;
+}
+.btnn{
+    display: inline-block;
+    padding: 15px 30px;
+    border: 2px solid blue;
+    color:#fff;
+    text-shadow: 0 0 10px black;
+    cursor: pointer;
+    font-size:12px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    margin-top: 10px;
+    background-color: blue;
+    text-decoration: none;
+    width:150px;
+    height: 60px;
+}
+.btnn::before{
+    content: '';
+    position: absolute;
+    top:0; right:0;
+    width:0%;
+    height: 100%;
+    background-color: white;
+    transition:.3s linear;
+    z-index: -1;
+}
+.btnn:hover::before{
+    width:100%;
+    left:0;
+}
+.btnn:hover{
+    background-color: blue;
+    color:black;
+}
+form{
+          margin:10px;
+          width:300px;
+          background-color: transparent;
+          height: 200px;
+          backdrop-filter: blur(55px);
+          box-shadow:
+      0 0 0 2px white,
+      0.3em 0.3em 1em purple;
+          border-radius:6%;
+          background:transparent;
+      }
+      .login{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        padding:20px;
+    }
+    .login input{
+        border-radius:12px;
+        width:250px;
+        height:100px;
+        margin:17px;
+        border:none;
+        outline: none;
+        padding:12px;
+        background-color: aqua;
+    }
+@media(max-width:991px){
+    html{
+        font-size: 95%;
+    }
+
+    section{
+        padding: 20px;
+    }
+}
+@media(max-width: 768px) {
+    
+   
+    img{
+      width:300px;
+      height: 300px;
+    }
+
+}
+@media(max-width:400px){
+    html{
+        font-size: 90%;
+    }
+    img{
+      width:300px;
+      height: 300px;
+    }
+    
+}
+</style>
+      
+</body>
+</html>
